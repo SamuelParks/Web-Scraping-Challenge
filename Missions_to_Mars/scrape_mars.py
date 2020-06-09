@@ -87,19 +87,19 @@ def scrape():
     news_titles_with_links = soup.find_all(class_='content_title')
     news_titles_with_links = news_titles_with_links[1]
 
-    news_p = soup.find(class_='article_teaser_body')
-
 
     # In[10]:
 
 
-    news_p
+    
+    news_p = soup.find(class_='article_teaser_body')
 
 
     # In[11]:
 
-
     news_title = news_titles_with_links.text
+    news_p = news_p.text
+
     # news_p = news_p.text
 
 
@@ -248,7 +248,11 @@ def scrape():
     tables = pd.read_html(url_Mars_Facts)
     Mars_Facts_df = tables[0]
 
+    Mars_Facts_df.columns = ["Description", "Value"]
+    Mars_Facts_df.set_index('Description', inplace=True)
+    Mars_Facts_df.head()
 
+    
     # In[28]:
 
 
